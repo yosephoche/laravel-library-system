@@ -40,7 +40,9 @@ class BorrowController extends Controller
             $id = 'P-0'; 
         }
         
-        return view('pinjam.create', compact('id'));
+        $books = Book::pluck('title', 'id');;
+        // dd($books);
+        return view('pinjam.create', compact('id', 'books'));
     }
 
     /**

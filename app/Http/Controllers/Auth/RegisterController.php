@@ -63,7 +63,7 @@ class RegisterController extends Controller
             'tanggal_lahir' => 'required',
             'no_identitas' => 'required|unique:members',
             'alamat' => 'required',
-            'g-recaptcha-response' => 'required|captcha',
+            // 'g-recaptcha-response' => 'required|captcha',
         ]);
     }
 
@@ -78,33 +78,33 @@ class RegisterController extends Controller
         DB::beginTransaction();
         try {
 
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'role' => 'member'
-        ]);
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'role' => 'member'
+            ]);
 
 
-        $member = Member::create([
-            'user_id' => $user->id,
-            'kode_member'=>'KD-'. $user->id,
-            'tempat_lahir' => $data['tempat_lahir'],
-            'tanggal_lahir' => $data['tanggal_lahir'],
-            'no_identitas' => $data['no_identitas'],
-            'alamat' => $data['alamat'],
-            'jenis_kelamin' => $data['jenis_kelamin']
-        ]);
+            $member = Member::create([
+                'user_id' => $user->id,
+                'kode_member'=>'KD-'. $user->id,
+                'tempat_lahir' => $data['tempat_lahir'],
+                'tanggal_lahir' => $data['tanggal_lahir'],
+                'no_identitas' => $data['no_identitas'],
+                'alamat' => $data['alamat'],
+                'jenis_kelamin' => $data['jenis_kelamin']
+            ]);
 
-        $memberRole = Role::where('name', 'member')->first();
-        $user->attachRole($memberRole);
-        $user->sendVerification();
+            $memberRole = Role::where('name', 'member')->first();
+            $user->attachRole($memberRole);
+            $user->sendVerification();
 
-        } catch(ValidationException $e)
-        {
+        }
+        catch(ValidationException $e){
             return Redirect::to('/register')
-        ->withErrors( $e->getErrors() )
-        ->withInput();
+            ->withErrors( $e->getErrors() )
+            ->withInput();
         }   
 
         DB::commit();

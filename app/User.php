@@ -83,8 +83,12 @@ class User extends Authenticatable
     {
         $token = $this->generateVerificationToken();
         $user = $this;
-        Mail::send('auth.emails.verification', compact('user', 'token'), function ($m) use ($user) {
-            $m->to($user->email, $user->name)->subject('Verifikasi Akun');
+
+        Mail::send('auth.emails.verification', compact('user', 'token'), function ($message) use ($user) {
+            $message->from('admin@perpustakaan.com', 'Admin Perpustakaan');
+            $message->sender('admin@perpustakaan.com', 'Admin Perpustakaan');
+            $message->to($user->email, $user->name);
+            $message->subject('Verifikasi Akun');
         });
     }
 

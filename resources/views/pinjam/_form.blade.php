@@ -19,9 +19,10 @@
 <div class="form-group {!! $errors->has('books') ? 'has-error' : '' !!}">
   {!! Form::label('books', 'Kode Buku *', ['class'=>'col-md-2 control-label']) !!}
   <div class="col-md-4">
-{!! Form::select('books[]', [''=>'']+App\Book::select(DB::raw("CONCAT(kode_buku,' ',title) as name, 'id'"))->pluck('name','id')->all(), null, [
-  'class'=>'js-selectize',
-  'placeholder' => 'Pilih Buku']) !!}
+  {!! Form::select('books[]', $books, null, [
+    'class'=>'js-selectize',
+    'placeholder' => 'Pilih Buku'])
+  !!}
   {!! Form::select('books[]', [''=>'']+App\Book::select(DB::raw("CONCAT(kode_buku,' ',title) as name, 'id'"))->pluck('name','id')->all(), null, [
   'class'=>'js-selectize',
   'placeholder' => 'Pilih Buku']) !!}
