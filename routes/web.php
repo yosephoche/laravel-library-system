@@ -13,6 +13,7 @@
 
 Route::get('/', 'GuestController@index');
 Route::get('/books-list', ['as' => 'booklist.index', 'uses' => 'BookListController@index']);
+Route::get('/books-list/ebook/{id}', ['as' => 'booklist.ebook', 'uses' => 'BookListController@ebook']);
 Route::get('books-list/details/{id}', ['as' => 'booklist.show', 'uses' => 'BooksController@show']);
 
 Auth::routes();

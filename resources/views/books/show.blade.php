@@ -41,6 +41,10 @@
                   <td>{{ $book->category->nama }}</td>
                 </tr>
                 <tr>
+                  <td class="text-muted">Tipe Buku</td>
+                  <td>{{ ($book->tipe == 1) ? "Ebook" : "Fisik" }}</td>
+                </tr>
+                <tr>
                   <td class="text-muted">Pengarang</td>
                   <td>{{ $book->author->name }}</td>
                 </tr>
@@ -56,14 +60,23 @@
                   <td class="text-muted">Deskripsi</td>
                   <td>{{ $book->deskripsi }}</td>
                 </tr>
-                <tr>
-                  <td class="text-muted">Stok Buku</td>
-                  <td>{{ $book->stock }}</td>
-                </tr>
-                <tr>
-                  <td class="text-muted">Nomor Rak</td>
-                  <td>{{ $book->no_rak }}</td>
-                </tr>
+                @if ($book->tipe !== 1)
+                  <tr>
+                    <td class="text-muted">Stok Buku</td>
+                    <td>{{ $book->stock }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-muted">Nomor Rak</td>
+                    <td>{{ $book->no_rak }}</td>
+                  </tr>
+                @endif
+                @if ($book->tipe == 1)
+                  <tr>
+                    <td>
+                      <a class="btn btn-xs btn-primary" href="{{ route('booklist.ebook', $book->id) }}">Baca Ebook</a>
+                    </td>
+                  </tr>
+                @endif
               </tbody>
             </table>
           </div>

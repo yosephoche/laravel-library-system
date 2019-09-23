@@ -80,11 +80,12 @@ class BooksController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        
         $book = Book::create($request->except('cover'));
         $book->stock = $book->amount;
+        $book->tipe = $request->type_id;
         $book->kode_buku = $book->category->initial . '-' . $book->id;
         $book->save();
+
         // isi field cover jika ada cover yang diupload
         if ($request->hasFile('cover')) {
             // Mengambil file yang diupload
@@ -102,6 +103,26 @@ class BooksController extends Controller
 
             // mengisi field cover di book dengan filename yang baru dibuat
             $book->cover = $filename;
+            $book->save();
+        }
+
+        // isi field path jika jenis buku berupa ebook
+        if ($request->hasFile('pdf_file')) {
+            // Mengambil file yang diupload
+            $uploaded_ebook = $request->file('pdf_file');
+
+            // mengambil extension file
+            $extension = $uploaded_ebook->getClientOriginalExtension();
+
+            // membuat nama file random berikut extension
+            $filename = md5(time()) . '.' . $extension;
+
+            // menyimpan cover ke folder public/img
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'ebook';
+            $uploaded_ebook->move($destinationPath, $filename);
+
+            // mengisi field cover di book dengan filename yang baru dibuat
+            $book->path_file = $filename;
             $book->save();
         }
 
