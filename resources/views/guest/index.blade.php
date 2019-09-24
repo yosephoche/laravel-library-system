@@ -10,7 +10,7 @@
     <div class="clearfix">
     </div>
     <center>
-    <div class="lead-title">Sistem Informasi Perpustakaan
+    <div class="lead-title">Sistem Informasi Perpustakaan Sudah diedit
     </center> 
     </div>
     </div>
