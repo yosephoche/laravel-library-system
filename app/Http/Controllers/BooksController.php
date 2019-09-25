@@ -55,7 +55,7 @@ class BooksController extends Controller
             ->addColumn(['data' => 'kategori', 'name'=>'kategori', 'title'=>'Kategori Buku'])  
             ->addColumn(['data' => 'amount', 'name'=>'amount', 'title'=>'Jumlah'])
             ->addColumn(['data' => 'stock', 'name'=>'stock', 'title'=>'Stock'])
-            ->addColumn(['data' => 'author.name', 'name'=>'author.name', 'title'=>'Penulis'])
+            ->addColumn(['data' => 'author.name', 'name'=>'author.name', 'title'=>'Penulis/Pengarang'])
             ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
 
         return view('books.index')->with(compact('html'));
@@ -118,7 +118,7 @@ class BooksController extends Controller
             $filename = md5(time()) . '.' . $extension;
 
             // menyimpan cover ke folder public/img
-            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'ebook';
+            $destinationPath = public_path('ebook');
             $uploaded_ebook->move($destinationPath, $filename);
 
             // mengisi field cover di book dengan filename yang baru dibuat

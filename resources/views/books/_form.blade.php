@@ -7,7 +7,7 @@
 </div>
 
 <div class="form-group {!! $errors->has('author_id') ? 'has-error' : '' !!}">
-  {!! Form::label('author_id', 'Penulis *', ['class'=>'col-md-2 control-label']) !!}
+  {!! Form::label('author_id', 'Penulis/Pengarang *', ['class'=>'col-md-2 control-label']) !!}
   <div class="col-md-4">
 {!! Form::select('author_id', [''=>'']+App\Author::pluck('name','id')->all(), null, [
   'class'=>'js-selectize',
