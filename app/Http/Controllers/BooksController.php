@@ -106,7 +106,11 @@ class BooksController extends Controller
         if ($request->hasFile('pdf_file')) {
             // Mengambil file yang diupload
             $uploaded_ebook = $request->file('pdf_file');
+            $path = public_path('ebook');
 
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
             // mengambil extension file
             $extension = $uploaded_ebook->getClientOriginalExtension();
 
