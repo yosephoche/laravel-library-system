@@ -103,7 +103,7 @@ class BooksController extends Controller
         }
 
         // isi field path jika jenis buku berupa ebook
-        if ($request->hasFile('pdf_file')) {
+        if ($request->pdf_file) {
             // Mengambil file yang diupload
             $uploaded_ebook = $request->file('pdf_file');
             $path = public_path('ebook');
