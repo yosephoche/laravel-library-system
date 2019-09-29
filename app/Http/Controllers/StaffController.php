@@ -8,9 +8,9 @@ use App\Http\Requests;
 use App\Staff;
 use App\Role;
 use App\User;
-use Yajra\Datatables\Html\Builder;
+use Yajra\DataTables\Html\Builder;
+use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\File;
-use Yajra\Datatables\Facades\Datatables;
 use App\Http\Requests\StoreStaffRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
@@ -44,7 +44,9 @@ class StaffController extends Controller
                         'edit_url' => route('staff.edit', $staff->id),
                         'confirm_message' => 'Yakin akan menghapus ' . $staff->name . '?'
                     ]);
-                })->make(true);
+                })
+                ->rawColumns(['name', 'action'])
+                ->make(true);
         }
 
         $html = $htmlBuilder

@@ -8,8 +8,8 @@ use App\Http\Requests;
 use App\Role;
 use App\User;
 use App\Member;
-use Yajra\Datatables\Html\Builder;
-use Yajra\Datatables\Facades\DataTables;
+use Yajra\DataTables\Html\Builder;
+use Yajra\Datatables\Datatables;
 use App\Http\Requests\StoreMemberRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -45,7 +45,9 @@ class MembersController extends Controller
                         'edit_url' => route('members.edit', $member->id),
                         'confirm_message' => 'Yakin akan menghapus ' . $member->name . '?'
                     ]);
-                })->make(true);
+                })
+                ->rawColumns(['name', 'action'])
+                ->make(true);
         }
 
         $html = $htmlBuilder

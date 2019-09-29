@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Yajra\DataTables\Html\Builder;
-use Yajra\DataTables\DataTables;
+use Yajra\Datatables\Datatables;
 use App\Book;
 use Laratrust\LaratrustFacade as Laratrust;
 

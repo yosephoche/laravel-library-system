@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Author;
-use Yajra\Datatables\Html\Builder;
+use Yajra\DataTables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
 

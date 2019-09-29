@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Yajra\DataTables\Html\Builder;
-use Yajra\DataTables\DataTables;
-// use Yajra\Datatables\Facades\Datatables;
+use Yajra\Datatables\Datatables;
 use App\BorrowLog;
 use App\LibrarySetting;
 
@@ -55,7 +54,9 @@ class StatisticsController extends Controller
                     return view('datatable._return', [
                         'return_url' => 'borrow/'.$stat->id.'/return'
                     ]);
-                })->make(true);
+                })
+                ->rawColumns(['nomor_peminjaman', 'action'])
+                ->make(true);
         }
 
         $html = $htmlBuilder

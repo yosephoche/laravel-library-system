@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Yajra\Datatables\Html\Builder;
+use Yajra\DataTables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Storage;
 use Response;
