@@ -70,6 +70,11 @@
                     <td>{{ $book->no_rak }}</td>
                   </tr>
                 @endif
+                <tr>
+                  <td>
+                    <a class="btn btn-xs btn-primary" href="{{ route('booklist.booking', $book->id) }}">Pesan Peminjaman</a>
+                  </td>
+                </tr>
                 @if ($book->tipe == 1)
                   <tr>
                     <td>

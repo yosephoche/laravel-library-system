@@ -75,6 +75,7 @@ class BorrowController extends Controller
         $borrow_data['staff_id'] = auth()->user()->id;
         $borrow_data['is_returned'] = 0;
         $borrow_data['tanggal_pinjam'] = date("Y-m-d");
+        $borrow_data['is_booking'] = 0;
         $borrow = BorrowLog::create($borrow_data);
 
         $check = 0;
@@ -115,6 +116,55 @@ class BorrowController extends Controller
         ]);
 
         return redirect()->route('statistics.index');
+    }
+
+    public function booking($id)
+    {
+        // dd($id, auth()->user()->id);
+        DB::beginTransaction();
+
+        $returned = BorrowLog::where('user_id', auth()->user()->id)->where('is_booking', 1)->first();
+        if (isset($returned)) {
+            Session::flash("flash_notification", [
+                "level"   => "warning",
+                "message" => "Buku sedang dipesan"
+            ]);
+
+            return redirect()->route('booklist.index');
+        }
+
+        $borrow_data['nomor_peminjaman'] = 'booking';
+        $borrow_data['user_id'] = auth()->user()->id;
+        $borrow_data['staff_id'] = auth()->user()->id;
+        $borrow_data['is_returned'] = 0;
+        $borrow_data['tanggal_pinjam'] = date("Y-m-d");
+        $borrow_data['is_booking'] = 1;
+        $borrow = BorrowLog::create($borrow_data);
+
+        if ($borrow) {
+            $books = Book::find($id);
+            if ($books->stock <= 0) {
+                Session::flash("flash_notification", [
+                    "level"   => "danger",
+                    "message" => "Stock Buku " . $books->title . " Habis"
+                ]);
+                return back();
+            }
+            $books->stock = ($books->stock) - 1;
+            $books->update();
+            $borrow_detail = new Borrow_detail();
+            $borrow_detail->borrow_id = $borrow->id;
+            $borrow_detail->book_id = $id;
+            $borrow_detail->save();
+        }
+
+        DB::commit();
+        Session::flash("flash_notification", [
+            "level"   => "success",
+            "message" => "Berhasil menyimpan data peminjaman "
+        ]);
+
+        return redirect()->route('/');
     }
 
     /**
@@ -234,6 +284,7 @@ class BorrowController extends Controller
         $borrows = BorrowLog::get();
 
         $handler = 'export' . ucfirst($request->get('type'));
+        // dd($handler);
         return $this->$handler($borrows);
     }
 
@@ -254,7 +305,7 @@ class BorrowController extends Controller
 
     private function exportXls($borrows)
     {
-        Excel::create('Data Peminjaman Perpustakaan', function($excel) use ($borrows) {
+        Excel::create('Data-Peminjaman-Perpustakaan', function($excel) use ($borrows) {
             // Set the properties
             $excel->setTitle('Data Peminjaman Perpustakaan')
                 ->setCreator(Auth::user()->name);

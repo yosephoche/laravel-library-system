@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use App\Http\Requests;
-use Yajra\Datatables\Html\Builder;
+use Yajra\DataTables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use App\Book;
 use Illuminate\Support\Facades\Session;
@@ -34,6 +34,7 @@ class BooksController extends Controller
             $books = Book::with('author');
             return Datatables::of($books)
                 ->addColumn('title', function($book){
+                    // return $book->title;
                     return '<a href="'.route('books.show', $book->id).'">'.$book->title.'</a>';
                 })
                 ->addColumn('kategori', function($book){
@@ -46,7 +47,9 @@ class BooksController extends Controller
                         'edit_url'        => route('books.edit', $book->id),
                         'confirm_message' => 'Yakin akan menghapus ' . $book->title . '?'
                     ]);
-                })->make(true);
+                })
+                ->rawColumns(['action', 'title'])
+                ->make(true);
         }
 
         $html = $htmlBuilder

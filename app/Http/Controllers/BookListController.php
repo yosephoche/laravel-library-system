@@ -43,7 +43,7 @@ class BookListController extends Controller
             ->addColumn(['data' => 'title', 'name'=>'title', 'title'=>'Judul'])
             ->addColumn(['data' => 'stock', 'name'=>'stock', 'title'=>'Stok', 'orderable'=>false, 'searchable'=>false])
             ->addColumn(['data' => 'no_rak', 'name'=>'no_rak', 'title'=>'Nomor Rak'])
-            ->addColumn(['data' => 'author.name', 'name'=>'author.name', 'title'=>'Penulis/Pengarang'])
+            ->addColumn(['data' => 'author.name', 'name'=>'author.name', 'title'=>'Penulis'])
             ->addColumn(['data' => 'tipe', 'name'=>'tipe', 'title'=>'Tipe Buku'])
             ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
 

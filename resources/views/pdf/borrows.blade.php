@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html><head>
   <title>Data Peminjaman</title>
   <style>
 
@@ -68,8 +67,7 @@ img,tr {page-break-inside: avoid;}
  */
 
   </style>
-</head>
-<body>
+</head><body>
   <h1>Data Peminjaman</h1>
   <hr>
   <table>
@@ -103,6 +101,5 @@ img,tr {page-break-inside: avoid;}
       @endforeach
     </tbody>
   </table>
-</body>
-</html>
+</body></html>
 

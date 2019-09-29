@@ -9,7 +9,7 @@ use App\Role;
 use App\User;
 use App\Member;
 use Yajra\Datatables\Html\Builder;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\Datatables\Facades\DataTables;
 use App\Http\Requests\StoreMemberRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;

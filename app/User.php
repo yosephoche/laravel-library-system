@@ -98,4 +98,5 @@ class User extends Authenticatable
         $this->verification_token = null;
         $this->save();
     }
+    
 }

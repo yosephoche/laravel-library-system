@@ -57,10 +57,12 @@
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                             <li><a href="{{ route('export.borrow') }}">Peminjaman</a></li>
+                            <!--
                             <li><a href=" {{route('export.members')}}">Member</a></li>
                             <li><a href=" {{route('export.staff')}}">Staff</a></li>
                             <li><a href=" {{route('export.books')}}">Buku</a></li>
                             </ul>
+                            -->
                         </li>
                     @endrole
                     @role('admin')
@@ -88,13 +90,16 @@
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                             <li><a href="{{ route('export.borrow') }}">Peminjaman</a></li>
+                            <!--
                             <li><a href=" {{route('export.members')}}">Member</a></li>
                             <li><a href=" {{route('export.staff')}}">Staff</a></li>
                             <li><a href=" {{route('export.books')}}">Buku</a></li>
+                            -->
                             </ul>
                         </li>
                         
                         {!! Html::smartNav(route('statistics.index'), 'Peminjaman') !!}
+                        {!! Html::smartNav(route('statistics.booking'), 'Pemesanan') !!}
                         
                         {!! Html::smartNav(url('data/settings/library'), 'Setting') !!}
                     @endrole

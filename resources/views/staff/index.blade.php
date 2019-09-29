@@ -15,7 +15,7 @@
 
           <div class="panel-body">
             <p> <a class="btn btn-primary" href="{{ url('/data/staff/create') }}">Tambah</a>
-            <a class="btn btn-primary" href="{{ url('/data/export/staff') }}">Export</a>
+            {{-- <a class="btn btn-primary" href="{{ url('/data/export/staff') }}">Export</a> --}}
             </p>
             {!! $html->table(['class'=>'table-striped']) !!}
           </div>

@@ -15,6 +15,8 @@ Route::get('/', 'GuestController@index');
 Route::get('/books-list', ['as' => 'booklist.index', 'uses' => 'BookListController@index']);
 Route::get('/books-list/ebook/{id}', ['as' => 'booklist.ebook', 'uses' => 'BookListController@ebook']);
 Route::get('books-list/details/{id}', ['as' => 'booklist.show', 'uses' => 'BooksController@show']);
+Route::get('books-list/pesan/{id}', ['as' => 'booklist.booking', 'uses' => 'BorrowController@booking']);
+
 
 Auth::routes();
 Route::get('auth/verify/{token}', 'Auth\RegisterController@verify');
@@ -171,6 +173,7 @@ Route::group(['prefix'=>'data', 'middleware'=>['auth', 'role:staff|admin|kepala'
   Route::get('settings/library', 'LibrarySettingsController@edit');
   Route::post('settings/library', 'LibrarySettingsController@update');
   Route::get('statistics', ['as'=>'statistics.index','uses'=>'StatisticsController@index']);
+  Route::get('booking', ['as'=>'statistics.booking','uses'=>'StatisticsController@booking']);
   Route::get('borrow/{id}/return', ['as'=>'borrow.return','uses'=>'BorrowController@return']);
   Route::put('borrow/{id}/return/post',['as'=>'borrow.return.post','uses'=>'BorrowController@return_post']);
   Route::resource('members', 'MembersController', ['except' => [

@@ -17,7 +17,7 @@
             <p> 
                 <a class="btn btn-primary" href="{{ url('/data/books/create') }}">Tambah</a>
                 {{-- <a class="btn btn-primary" href="{{ url('/data/books/upload') }}">E-book</a> --}}
-                <a class="btn btn-primary" href="{{ url('/data/export/books') }}">Export</a>
+                {{-- <a class="btn btn-primary" href="{{ url('/data/export/books') }}">Export</a> --}}
             </p>
             {!! $html->table(['class'=>'table-striped']) !!}
           </div>
