@@ -35,7 +35,9 @@ class BookListController extends Controller
                         return '<a class="btn btn-xs btn-primary" href="' . route('booklist.show', $book->id) . '">View</a>';
                     }
                     return '<a class="btn btn-xs btn-primary" href="'.route('booklist.show', $book->id).'">Details</a>';
-                })->make(true);
+                })
+                ->rawColumns([''])
+                ->make(true);
         }
 
         $html = $htmlBuilder

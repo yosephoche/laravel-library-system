@@ -29,11 +29,11 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->call(function () {
-            DB::table('borrow_logs')->where(DB::raw('tanggal_pinjam < CURDATE() AND is_booking = 1'))->delete();
-        })
+            DB::table('borrow_logs')->where(DB::raw('tanggal_pinjam + 1 < CURDATE() AND is_booking = 1'))->delete();
+        });
         // ->daily()
-        ->everyMinute()
-        ->runInBackground();
+        // ->everyMinute()
+        // ->runInBackground();
     }
 
     /**
