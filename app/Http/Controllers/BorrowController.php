@@ -164,7 +164,7 @@ class BorrowController extends Controller
             "message" => "Berhasil menyimpan data peminjaman "
         ]);
 
-        return redirect()->route('/');
+        return redirect()->route('dashboard.member');
     }
 
     /**
