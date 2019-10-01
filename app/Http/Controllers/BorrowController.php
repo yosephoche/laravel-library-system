@@ -342,7 +342,7 @@ class BorrowController extends Controller
             });
         });
 
-        return $excel->export('xls');
+        return $excel->downlaod('xls');
     }
 
     private function exportPdf($borrows)
