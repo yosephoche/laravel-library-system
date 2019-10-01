@@ -305,7 +305,7 @@ class BorrowController extends Controller
 
     private function exportXls($borrows)
     {
-        Excel::create('Data-Peminjaman-Perpustakaan', function($excel) use ($borrows) {
+        $excel = Excel::create('Data-Peminjaman-Perpustakaan', function($excel) use ($borrows) {
             // Set the properties
             $excel->setTitle('Data Peminjaman Perpustakaan')
                 ->setCreator(Auth::user()->name);
@@ -337,7 +337,9 @@ class BorrowController extends Controller
                     ]);
                 }
             });
-        })->export('xls');
+        });
+
+        return $excel->export('xls');
     }
 
     private function exportPdf($borrows)
