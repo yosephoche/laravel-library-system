@@ -14,7 +14,10 @@
           </div>
 
           <div class="panel-body">
+            @if (Auth::user()->id != 2)
             <p> <a class="btn btn-primary" href="{{ url('/data/borrow/create') }}">Tambah</a> 
+                
+            @endif
             <a class="btn btn-primary" href="{{ url('/data/export/borrow') }}">Export</a>
             </p>
             {!! $html->table(['class'=>'table-striped']) !!}

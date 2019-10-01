@@ -9,6 +9,7 @@ use App\Author;
 use Yajra\DataTables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
+use Auth;
 
 class AuthorsController extends Controller
 {
@@ -33,8 +34,10 @@ class AuthorsController extends Controller
         }
 
         $html = $htmlBuilder
-            ->addColumn(['data' => 'name', 'name'=>'name', 'title'=>'Nama'])
-            ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
+            ->addColumn(['data' => 'name', 'name'=>'name', 'title'=>'Nama']);
+        if (Auth::user()->id != 2) {
+            $html->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
+        }
 
         return view('authors.index')->with(compact('html'));
     }

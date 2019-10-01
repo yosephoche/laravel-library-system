@@ -29,7 +29,7 @@ Route::post('settings/profile', 'SettingsController@updateProfile');
 Route::get('settings/password', 'SettingsController@editPassword');
 Route::post('settings/password', 'SettingsController@updatePassword');
 
-Route::group(['prefix'=>'data', 'middleware'=>['auth', 'role:admin']], function () {
+Route::group(['prefix'=>'data', 'middleware'=>['auth', 'role:admin|kepala',]], function () {
   Route::resource('authors', 'AuthorsController');
   Route::resource('books', 'BooksController');
   Route::resource('borrow', 'BorrowController');
@@ -231,7 +231,7 @@ Route::group(['prefix'=>'data', 'middleware'=>['auth', 'role:staff|admin|kepala'
   ]);
 });
 
-Route::group(['prefix'=>'data', 'middleware'=>['auth', 'role:admin']], function () {
+Route::group(['prefix'=>'data', 'middleware'=>['auth', 'role:admin|kepala']], function () {
     Route::resource('staff', 'StaffController');
 });
 

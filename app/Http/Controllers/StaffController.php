@@ -52,8 +52,10 @@ class StaffController extends Controller
         $html = $htmlBuilder
             ->addColumn(['data' => 'nip', 'name'=>'nip', 'title'=>'NIP'])
             ->addColumn(['data' => 'name', 'name'=>'name', 'title'=>'Nama'])
-            ->addColumn(['data' => 'email', 'name'=>'email', 'title'=>'Email'])
-            ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
+            ->addColumn(['data' => 'email', 'name'=>'email', 'title'=>'Email']);
+        if (Auth::user()->id != 2) {
+            $html->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
+        }
 
         return view('staff.index', compact('html'));
     }

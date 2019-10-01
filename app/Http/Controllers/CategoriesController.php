@@ -9,6 +9,7 @@ use App\Category;
 use Yajra\DataTables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
@@ -34,8 +35,12 @@ class CategoriesController extends Controller
 
         $html = $htmlBuilder
             ->addColumn(['data' => 'nama', 'name'=>'nama', 'title'=>'Nama'])
-            ->addColumn(['data' => 'initial', 'name'=>'initial', 'title'=>'Initial'])
-            ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
+            ->addColumn(['data' => 'initial', 'name'=>'initial', 'title'=>'Initial']);
+        
+        if (Auth::user()->id != 2) {
+            # code...
+            $html->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
+        }
 
         return view('categories.index')->with(compact('html'));
     }

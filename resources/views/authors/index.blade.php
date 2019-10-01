@@ -14,7 +14,10 @@
           </div>
 
           <div class="panel-body">
+              @if (Auth::user()->id != 2)
+                  
               <p> <a class="btn btn-primary" href="{{ route('authors.create') }}">Tambah</a> </p>
+              @endif
               {!! $html->table(['class'=>'table-striped']) !!}
           </div>
         </div>

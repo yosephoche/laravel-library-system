@@ -15,7 +15,10 @@
 
           <div class="panel-body">
             {{-- <p>  <a class="btn btn-primary" href="{{ url('/data/export/members') }}">Export</a> </p> --}}
-            <p>  <a class="btn btn-primary" href="{{ url('/data/members/create') }}">Tambah</a> </p>
+            @if (Auth::user()->id != 2)
+              <p><a class="btn btn-primary" href="{{ url('/data/members/create') }}">Tambah</a> </p>
+                
+            @endif
             {!! $html->table(['class'=>'table-striped']) !!}
           </div>
         </div>

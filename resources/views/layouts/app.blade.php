@@ -51,23 +51,8 @@
                     @if (Auth::check())
                         {!! Html::smartNav(url('/home'), 'Dashboard') !!}
                     @endif
-                    @role('kepala')
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Laporan
-                            <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            <li><a href="{{ route('export.borrow') }}">Peminjaman</a></li>
-                            <!--
-                            <li><a href=" {{route('export.members')}}">Member</a></li>
-                            <li><a href=" {{route('export.staff')}}">Staff</a></li>
-                            <li><a href=" {{route('export.books')}}">Buku</a></li>
-                            </ul>
-                            -->
-                        </li>
-                    @endrole
-                    @role('admin')
-                       
-                        
+                   
+                    @role(['admin', 'kepala'])
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">User
                             <span class="caret"></span></a>
