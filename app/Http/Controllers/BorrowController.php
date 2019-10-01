@@ -305,6 +305,9 @@ class BorrowController extends Controller
 
     private function exportXls($borrows)
     {
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="your_name.xls"');
+        header('Cache-Control: max-age=0');
         $excel = Excel::create('Data-Peminjaman-Perpustakaan', function($excel) use ($borrows) {
             // Set the properties
             $excel->setTitle('Data Peminjaman Perpustakaan')
