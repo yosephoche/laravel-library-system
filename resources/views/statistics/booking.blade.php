@@ -6,16 +6,16 @@
       <div class="col-md-12">
         <ul class="breadcrumb">
           <li><a href="{{ url('/home') }}">Dashboard</a></li>
-          <li class="active">Data Peminjaman</li>
+          <li class="active">Data Pemesanan</li>
         </ul>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h2 class="panel-title">Data Peminjaman</h2>
+            <h2 class="panel-title">Data Pemesanan</h2>
           </div>
 
           <div class="panel-body">
             <p> <a class="btn btn-primary" href="{{ url('/data/borrow/create') }}">Tambah</a> 
-            <a class="btn btn-primary" href="{{ url('/data/export/borrow') }}">Export</a>
+            {{-- <a class="btn btn-primary" href="{{ url('/data/export/borrow') }}">Export</a> --}}
             </p>
             {!! $html->table(['class'=>'table-striped']) !!}
           </div>
