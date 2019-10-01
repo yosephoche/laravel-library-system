@@ -19,29 +19,30 @@
                         <td>
                             @if ($borrowLogs->count() == 0)
                                 Tidak ada buku dipinjam
+                            @else
+                              <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                      <th>Nomor Peminjaman</th>
+                                      <th>Tanggal Peminjaman</th>
+                                      <th>Jumlah Hari</th>
+                                      <th>Jumlah Buku</th>
+                                    </tr>
+                                </thead>
+
+
+                              @foreach ($borrowLogs as $borrowLog)
+                                <tr>
+                                  <td>{{ $borrowLog->nomor_peminjaman }}</td>
+                                  <td>{{ $borrowLog->tanggal_pinjam }}</td>
+                                  <td>{{ $borrowLog->getDays($borrowLog->tanggal_pinjam) }} Hari</td>
+                                  <td>{{ $borrowLog->details->count() }}</td>
+                                </tr> 
+                              @endforeach
+
+                              </table>
                             @endif
 
-                            <table class="table table-condensed">
-                              <thead>
-                                  <tr>
-                                    <th>Nomor Peminjaman</th>
-                                    <th>Tanggal Peminjaman</th>
-                                    <th>Jumlah Hari</th>
-                                    <th>Jumlah Buku</th>
-                                  </tr>
-                              </thead>
-
-
-                            @foreach ($borrowLogs as $borrowLog)
-                               <tr>
-                                 <td>{{ $borrowLog->nomor_peminjaman }}</td>
-                                 <td>{{ $borrowLog->tanggal_pinjam }}</td>
-                                 <td>{{ $borrowLog->getDays($borrowLog->tanggal_pinjam) }} Hari</td>
-                                 <td>{{ $borrowLog->details->count() }}</td>
-                               </tr> 
-                            @endforeach
-
-                            </table>
                         </td>
                     </tr>
                 </tbody>
