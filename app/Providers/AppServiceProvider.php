@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
             $get_notif = BorrowLog::with('details')
                 ->where('user_id', Auth::user()->id)
                 ->where('is_returned', 0)
-                ->where('id', 8)
+                ->where('is_booking', 0)
                 ->get();
 
             $notification['count'] = $get_notif->count();
