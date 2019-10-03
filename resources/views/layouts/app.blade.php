@@ -117,7 +117,9 @@
                         <li><a href="{{ url('/register') }}">Daftar</a></li>
                          <li><a href="{{ url('/books-list') }}">Daftar Buku</a></li>
                     @else
-                        @include('layouts.notification')
+                        @if (Auth::user()->role == 'member')
+                            @include('layouts.notification')
+                        @endif
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
