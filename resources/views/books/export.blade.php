@@ -66,7 +66,7 @@
           <div class="form-group {!! $errors->has('type') ? 'has-error' : '' !!}">
               {!! Form::label('type', 'Pilih Output', ['class'=>'col-md-2 control-label']) !!}
               <div class="col-md-4 checkbox">
-                  {{ Form::radio('type', 'xls', true) }} Excel
+                  {{-- {{ Form::radio('type', 'xls', true) }} Excel --}}
                   {{ Form::radio('type', 'pdf') }} PDF
                   {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
               </div>

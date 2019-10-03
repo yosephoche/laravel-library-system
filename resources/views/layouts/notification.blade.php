@@ -1,5 +1,11 @@
 <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"><span class="badge badge-info">{{$notification['count']}}</span></i></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-envelope">
+            @if ($notification['count'] !== 0)
+                <span class="badge badge-info">{{$notification['count']}}</span>
+            @endif
+        </i>
+    </a>
     <ul class="dropdown-menu notify-drop">
         <div class="notify-drop-title">
             <div class="row">
