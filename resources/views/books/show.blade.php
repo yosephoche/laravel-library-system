@@ -70,7 +70,7 @@
                     <td>{{ $book->no_rak }}</td>
                   </tr>
                 @endif
-                @if (Auth::user()->role == 'member')
+                @if (Auth::user())
                   <tr>
                     <td>
                       <a class="btn btn-xs btn-primary" href="{{ route('booklist.booking', $book->id) }}">Pesan Peminjaman</a>
