@@ -14,6 +14,13 @@
               <hr>
               <h4>Statistik Peminjaman Tahun 2019</h4>
               <canvas id="chartPenulis" width="400" height="150"></canvas>
+              <br><br>
+              <h4>Statistik Jumlah Pengunjung</h4>
+              <canvas id="chartPengunjung" width="400" height="150"></canvas>
+
+              <br><br>
+              <h4>Statistik Jumlah Pengunjung</h4>
+              <canvas id="chartBuku" width="400" height="150"></canvas>
           </div>
         </div>
       </div>
@@ -51,6 +58,40 @@
         type: 'bar',
         data: data,
         options: options
+    });
+
+    var pengunjung = {
+      labels: {!! json_encode($members) !!},
+      datasets: [{
+          label: 'Jumlah Pengunjung',
+          data: {!! json_encode($pengunjung) !!},
+          backgroundColor: "rgba(151,187,205,0.5)",
+          borderColor: "rgba(151,187,205,0.8)",
+      }]
+    };
+
+    var chartPengunjung = document.getElementById("chartPengunjung").getContext("2d");
+    var chart = new Chart(chartPengunjung, {
+      type: 'bar',
+      data: pengunjung,
+      options: options
+    });
+
+    var buku = {
+      labels: {!! json_encode($category) !!},
+      datasets: [{
+          label: 'Jumlah Buku',
+          data: {!! json_encode($buku) !!},
+          backgroundColor: "rgba(151,187,205,0.5)",
+          borderColor: "rgba(151,187,205,0.8)",
+      }]
+    };
+
+    var chartBuku = document.getElementById("chartBuku").getContext("2d");
+    var chart = new Chart(chartBuku, {
+      type: 'bar',
+      data: buku,
+      options: options
     });
     </script>
 @endsection

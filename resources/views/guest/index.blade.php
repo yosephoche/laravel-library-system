@@ -10,13 +10,15 @@
     <div class="clearfix">
     </div>
     <center>
-    <div class="lead-title">Sistem Informasi Perpustakaan
+      <div class="lead-title">Sistem Informasi Perpustakaan</div>
+      <img src="/images/logo.png" alt="" width="600" height="300">
+      <div class="lead-title">SEKOLAH ANGKASA LANUD SULTAN HASANUDDIN</div>
     </center> 
     </div>
     </div>
   </div>
 </header>
-<section class="flex-sect">
+{{-- <section class="flex-sect">
   <div class="container-width">
     <div class="flex-title">Selamat Datang
     </div>
@@ -30,7 +32,7 @@
       <li>Reporting</li>
       <li>Borrow management with maximal date and late penalty</li>
     </ol>
-  </div>
+  </div> --}}
 </section>
 
 @endsection

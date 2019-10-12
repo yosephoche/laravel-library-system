@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Author;
 use App\Member;
 use App\Borrowlog;
+use App\Category;
+use App\Book;
 use DB;
 class HomeController extends Controller
 {
@@ -40,14 +42,23 @@ class HomeController extends Controller
     {
         $members = ['Januari','Februari', 'Maret', 'April', 'Mei','Juni','Juli','Agustus','September','November','Desember'];
         $borrows = [];
-        $i = 1;
+        $pengunjung = [2, 5, 8, 9, 8, 2, 4, 7, 1, 3, 2];
         
+        $buku = [];
+        $category = [];
+        foreach (Category::all()->toArray() as $cat) {
+            array_push($category, $cat['nama']);
+            array_push($buku, Book::where('category_id', $cat['id'])->count());
+        }
+
+        // dd($buku);
+        $i = 1;        
         foreach ($members as $member) {
             array_push($borrows, BorrowLog::where( DB::raw('MONTH(created_at)'), '=', $i )->count());
             $i++;
         }
 
-        return view('dashboard.admin', compact('members', 'borrows'));
+        return view('dashboard.admin', compact('members', 'borrows', 'pengunjung', 'buku', 'category'));
     }
 
     protected function memberDashboard()
